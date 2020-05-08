@@ -10,7 +10,6 @@ const StyledContent = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    border: black solid 1px;
     background: #F8FAFB;
     height: 100%;
 `

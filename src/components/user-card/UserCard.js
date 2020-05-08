@@ -3,7 +3,7 @@ import { StyledCardContainer } from './style'
 import AvatarImage from '../../images/avatar.svg'
 
 const UserCard = props => {
-    const user = props.user
+    const user = props.data.user
 
     return(
         <StyledCardContainer>
@@ -12,8 +12,8 @@ const UserCard = props => {
             </div>
             <div className="user-info">
                 <spam>{user.name}</spam>
-                <p>{user.email}</p>
-                <a>2 tarefas pendente</a>
+                <p>{user.email.toLowerCase()}</p>
+                <a>{props.data.pendingTaskCounter} tarefas pendente</a>
             </div>
         </StyledCardContainer>
     )

@@ -5,13 +5,16 @@ import UserCard from '../user-card/UserCard'
 
 
 const UserDetail = props => {
-    const data = props.location.state.user
+    const data = {
+        user: props.location.state.user,
+        pendingTaskCounter: props.location.state.pendingTaskCounter
+    }
     return(
         <>
             <StyledStructure>
                 <NavBar/>
                 <StyledContent className="content">
-                    <UserCard user={data}/>
+                    <UserCard data={data}/>
                 </StyledContent>
             </StyledStructure>
         </>

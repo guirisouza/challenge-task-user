@@ -1,10 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { StyledContainerTaskList } from './style'
+import { useDispatch } from 'react-redux'
+import { StyledContainerTaskList, StyledTaskItem } from './style'
+import { selectUserMenu } from '../navbar/navBarActions'
 
 
 const TaskList = state => {
+
+    const styleStatus = {
+        pending: {
+            bg: "#F6FAF0",
+            color: "#A2C85F"
+        },
+        done: {
+            bg: "#FCF2F2",
+            color: "#DE6767" 
+        }
+    }
 
     const userQuery = (users, task) => {
         let userData = {}
@@ -14,6 +27,21 @@ const TaskList = state => {
             }
         })
         return userData
+    }
+
+
+    const pendingTasks = (tasks, userId) => {
+        let counter = 0
+        tasks.map(task => {
+            if(task.userId === userId && task.completed === false) {counter++} 
+        }) 
+        console.log('COUNTER TASK', userId, counter)
+        return counter
+    }
+
+    const dispatch = useDispatch()
+    const selectedUser = () => {
+        dispatch(selectUserMenu())
     }
 
     return(
@@ -27,18 +55,19 @@ const TaskList = state => {
             {
                 state.tasks.map((task, index) => {
                     let user = userQuery(state.users, task)
+                    let pendingTaskCounter = pendingTasks(state.tasks, user.id)
                     let status = ''
                     task.completed 
                         ? status = 'Feito'
                         : status = 'Pendente'
                     return (
-                        <div key={index} className="task-item">
+                        <StyledTaskItem style={{styleStatus: styleStatus, status: status}} key={index}>
                             <p>{task.title}</p>
-                            <Link to={{pathname: '/user-detail', state:{user: user}}}>
+                            <Link onClick={() => selectedUser()} to={{pathname: '/user-detail', state:{user: user, pendingTaskCounter: pendingTaskCounter}}}>
                                 <p>{user.name}</p>
                             </Link >
-                            <p>{status}</p>
-                        </div>
+                            <div className="done"><p>{status}</p></div>
+                        </StyledTaskItem>
                     )
                 })
             }
