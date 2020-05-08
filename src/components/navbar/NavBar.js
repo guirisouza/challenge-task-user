@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux'
 
 
 const NavBar = state => {
-    console.log('aweeeeeeeeeeeeeeeeee',state.toggleNav)
     const dispatch = useDispatch()
     const selectedTask = () => {
         dispatch(selectTaskMenu())

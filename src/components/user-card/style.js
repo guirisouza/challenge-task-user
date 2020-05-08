@@ -7,7 +7,7 @@ const StyledCardContainer = styled.div`
     align-self: start;
     margin-top: 40px;
     background: white;
-    width: 95%;
+    width: 79%;
     border-radius: 5px;
     align-items: center;
 

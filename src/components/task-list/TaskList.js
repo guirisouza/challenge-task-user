@@ -35,7 +35,6 @@ const TaskList = state => {
         tasks.map(task => {
             if(task.userId === userId && task.completed === false) {counter++} 
         }) 
-        console.log('COUNTER TASK', userId, counter)
         return counter
     }
 

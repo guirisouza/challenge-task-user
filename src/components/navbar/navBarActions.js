@@ -6,7 +6,6 @@ export const selectTaskMenu = () => {
 }
 
 export const selectUserMenu = () => {
-    console.log('opaaaaaaaaaaa')
     return {
         type: 'SELECTED_USERS',
         payload: true
